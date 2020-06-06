@@ -22,9 +22,9 @@ namespace Switch.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var conn = Configuration.GetConnectionString("SwitchDB");
-            services.AddDbContext<SwitchContext>(options => options.UseLazyLoadingProxies().UseMySql(conn, m => m.MigrationsAssembly("Switch.Infra.Data")));
-
+            //var conn = Configuration.GetConnectionString("SwitchDB");
+            services.AddDbContext<SwitchContext>(Options => Options.UseLazyLoadingProxies()
+                                                .UseMySql(Configuration.GetConnectionString("SwitchDB"), m => m.MigrationsAssembly("Switch.Infra.Data")));
             services.AddMvcCore();
         }
 
