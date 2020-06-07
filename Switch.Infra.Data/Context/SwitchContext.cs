@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Switch.Domain.Entities;
+using Switch.Infra.Data.Config;
 
 namespace Switch.Infra.Data.Context
 {
@@ -16,6 +17,12 @@ namespace Switch.Infra.Data.Context
             : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+            base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
